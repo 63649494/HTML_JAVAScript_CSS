@@ -1,0 +1,156 @@
+<html>
+<head><title>201610130128孟壮壮</title></head>
+
+<style>
+
+body,ul,li,div,h2,a{padding:0;margin:0;font-family:"华文彩云";color:#F2F2F2}
+.mainbox {width:1000px;height:400px;margin:0 auto;display:none;}
+.mainbox ul {list-style-type:none;}
+.mainbox ul li{float:left;width:250px;height:400px;border:30px solid #F2F2F2;margin-left:-60px;position:relative;}
+.mainbox ul li:hover{border-style: solid;
+					 border-top-color:#ff0000;
+					 border-left-color:#3bee17;
+					 border-bottom-color:#eede15;
+					 border-right-color:#2279ee;}
+.mainbox .button {font-size:60px;}
+.mainbox .button a{opacity:0.6}
+.mainbox .button a:hover{ box-shadow:0px -10px 0px 0px #ff0000,/*上边阴影红色*/
+                -10px 0px 0px 0px #3bee17,/*左边阴影绿色*/
+                10px 0px 0px 0px #2279ee,/*右边阴影蓝色*/
+                0px 10px 0px 0px #eede15;/*下边阴影黄色*/;
+				opacity:1}
+.mainbox .button .leftbut{float:left;}
+.mainbox .button .rightbut{float:right;}
+.mainbox .button .playbut{margin:34%;}
+.mainbox h2 {position: fixed; bottom: 0;left:45%;}
+.mainbox ul li:first-child {transform:rotate(10deg);}
+.mainbox ul li:nth-child(2){transform:rotate(20deg);}
+.mainbox ul li:nth-child(3){transform:rotate(30deg);}
+.mainbox ul li:last-child {transform:rotate(40deg);}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$imglist=$(".mainbox ui li"); 
+imgAll=creatimg([['imgs/1.jpg','imgs/2.jpg','imgs/3.jpg','imgs/4.jpg'],['imgs/5.jpg','imgs/6.jpg','imgs/7.jpg','imgs/8.jpg'],['imgs/9.jpg','imgs/10.jpg','imgs/11.jpg','imgs/12.jpg']]);
+imgArrIndex=0;
+imgNo=0;
+
+
+function creatimg(arr){
+	var imgArr=[];
+	for(var i in arr){
+		imgArr[i]=[];
+		for(var x in arr[i]){
+		imgArr[i][x]=new Image();
+		imgArr[i][x]=arr[i][x];
+		}
+	}
+	return imgArr;
+}
+
+/*
+window.onload= function() { 
+var lis = document.getElementById("ulList").childNodes; 
+
+for (var i = 0; i < lis.length; i++) { 
+var myli = lis[i]; 
+if (myli.nodeType == 1) { 
+//和下面的一个li交换位置 
+myli.onclick = function() { 
+if (this.nextElementSibling) { 
+var nextli = this.nextElementSibling;
+document.getElementById("ulList").insertBefore(nextli, this); 
+} 
+}; 
+} 
+} 
+} 
+//交换图片位置
+*/
+
+
+
+$(document).ready(function(){
+
+$(".mainbox").fadeIn(3000);
+
+	var i=1;
+  $(".leftbut").click(function(){
+    $("#l"+((i-1)%4)).animate({left:'+=750px'}); //应该为+=或-= 否则只能执行一次
+	$("#l"+((i)%4)).animate({right:'+=250px'});
+	$("#l"+((i+1)%4)).animate({right:'+=250px'});
+	$("#l"+((i+2)%4)).animate({right:'+=250px'});
+	i++;
+  });
+
+  
+	$(".rightbut").click(function(){
+	i--;
+	    $("#l"+((i-1)%4)).animate({left:'-=750px'}); //应该为+=或-= 否则只能执行一次
+	$("#l"+((i)%4)).animate({right:'-=250px'});
+	$("#l"+((i+1)%4)).animate({right:'-=250px'});
+	$("#l"+((i+2)%4)).animate({right:'-=250px'});
+});
+
+	$(".playbut").click(function(){
+	alert("点击图片会更换图片，左右按钮可以调整图片位置（玩多了会被玩坏）点击歌曲名可以更换歌曲；（由于歌曲太多文件会很大，故只有4首歌）");
+
+});
+
+});
+
+
+window.onload = function(){
+    obj = document.getElementById("ulList").getElementsByTagName("li");
+    for(i in obj){
+	
+        obj[i].onclick = function change(){
+            this.innerHTML = "<img src=\"imgs/"+(imgNo+5)+".jpg\" width=\"250\" height=\"400\">";
+			imgNo++;
+			if(imgNo==8)
+			imgNo=-4;
+        }
+    }
+	
+}//改变图片
+
+$(document).ready(function(){
+$("#ulList").click(function(){
+$("#ulList").fadeOut(1);
+$("#ulList").fadeIn(2000);
+
+});
+
+});
+
+
+</script> 
+
+
+<body bgcolor="black">
+
+<img src="imgs/lhua.gif" height=494px width=224px style="float:left"><img>
+<img src="imgs/rhua.gif" style="float:right"><img>
+
+<div class="mainbox">
+<ul id="ulList">
+<li id="l0"><img src="imgs/1.jpg" width="250" height="400"> </li>
+<li id="l1"><img src="imgs/2.jpg" width="250" height="400"> </li>
+<li id="l2"><img src="imgs/3.jpg" width="250" height="400"> </li>
+<li id="l3"><img src="imgs/4.jpg" width="250" height="400"> </li>
+</ul>
+<div class="button">
+<a class="leftbut">&lt</a>
+<a class="rightbut">&gt</a>
+<a class="playbut">Information</a>
+</div>
+<h2>201610130128</h2>
+</div>
+
+
+</body>
+</html>

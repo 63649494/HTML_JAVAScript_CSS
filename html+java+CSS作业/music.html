@@ -1,0 +1,231 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="button.css" /> 
+</head>
+<style>
+a,h2,table {font-family:"微软雅黑";}
+
+h2 {text-align:center; color: #fff;}
+a {text-decoration:none; cursor:pointer}
+a:hover {text-decoration:underline;}
+table {width:800px; margin: 10px auto; 
+border-style:solid;
+border-width:1px;
+border-color:#d9d9d9;
+border-top-color:#FF0000;
+border-top-width:2px;
+border-bottom-left-radius:15px;
+border-bottom-right-radius:15px;
+}
+th {border:1px solid #d9d9d9;}
+td {border:none;}
+audio {width:800px; 
+	   display:block;
+	   margin:30px auto;}
+
+div{width:450px;
+margin:10px auto;}
+</style>
+
+.anchor{
+{
+    position: fixed;
+    top: 0px;
+    left: 400px;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+    margin-left:auto;
+    margin-right:auto;
+}
+}
+
+<script>
+
+function changeS(a){
+	var x=document.getElementById("music");
+	var str1="music/";
+	var str2=a;
+	var str3=".mp3";
+	var str=str1+str2+str3;
+	x.setAttribute("src",str);
+}
+</script>
+
+
+<body bgcolor="black"> 
+
+<a name="top" id="top"></a> 
+
+
+<img src="imgs/title.gif" width=120px height=130px style="float:right;"><img>
+<img src="imgs/CD.gif" width=150px height=150x style="float:left;margin-left: 150px"><img>
+<img src="imgs/CD.gif" width=150px height=150px style="float:right;margin-right: 30px"><img>
+
+
+<h2>歌曲列表</h2>
+<table bgcolor="white"
+cellpadding="5" 
+cellspacing="0"
+>
+
+<a class="anchor" href="#top" target="_self" title="返回顶部"
+style="position: fixed;
+    top: 70px;
+    left: 65%;
+    right: 0px;
+    width: 200px;
+    height: 200px;
+    margin-left:auto;
+    margin-right:auto;"
+><img src="imgs/anchor.png" width=50px height=50px><img></a> 
+
+
+<tr>
+<th>&nbsp;</th><!--显示空格-->
+<th>歌曲标题</th>
+<th>时长</th>
+<th>歌手</th>
+</tr>
+
+<tr>
+<td>1</td>
+<td><a herf=# onclick="changeS(0)">AM</a></td>
+<td>03:47</td>
+<td>nahviss</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td><a herf=# onclick="changeS(1)">Everything for my sister</a></td>
+<td>05:18</td>
+<td>広川恵一</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td><a herf=# onclick="changeS(2)">Telestellar</a></td>
+<td>04:13</td>
+<td>びす</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td><a herf=# onclick="changeS(3)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td><a herf=# onclick="changeS(4)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td><a herf=# onclick="changeS(5)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td><a herf=# onclick="changeS(6)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>8</td>
+<td><a herf=# onclick="changeS(7)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td><a herf=# onclick="changeS(8)">暂无</a></td>
+<td>none</td>
+<td>none</td>
+</tr>
+
+<tr>
+<td>10</td>
+<td><a herf=# onclick="changeS(9)">その命題 ~GRAND BATTLE 2~</a></td>
+<td>03:35</td>
+<td>芳賀敬太</td>
+</tr>
+
+</table>
+
+<audio id="music" src="music/0.mp3" controls autoplay loop>您的浏览器不支持audio标签</audio>
+
+<div id="button">
+
+  <a id="beforeBtn" href=# onclick="beforeS()" class="button button-glow button-rounded button-highlight">上一首</a>
+  <a id="nextBtn" href=# onclick="nextS()" class="button button-glow button-rounded button-caution">下一首</a>
+  <a id="LoopChange" href=# onclick="noLoop()" class="button button-glow button-rounded button-royal">循环播放</a>
+</div>
+
+
+</body>
+
+
+
+<script type="text/javascript">
+
+function nextS(){
+var str=document.getElementById("music").src;
+var substr=str.slice(-5)
+var a=parseInt(substr)
+	var str1="music/";
+	var str2=(a==9?1:a+1);
+	var str3=".mp3";
+	var str=str1+str2+str3;
+var x=document.getElementById("music");
+x.setAttribute("src",str);
+}
+
+function beforeS(){
+var str=document.getElementById("music").src;
+var substr=str.slice(-5)
+var a=parseInt(substr)
+	var str1="music/";
+	var str2=(a==0?9:a-1);
+	var str3=".mp3";
+	var str=str1+str2+str3;
+var x=document.getElementById("music");
+x.setAttribute("src",str);
+}
+
+
+
+var aud = document.getElementById("music");
+aud.onended = function(){
+	nextS();}//自动下一曲
+
+
+function noLoop(){
+var aud = document.getElementById("music");
+aud.loop=false;
+var but = document.getElementById("LoopChange");
+but.innerHTML="顺序播放";
+but.setAttribute("onclick","Loop()");
+}
+
+function Loop(){
+var aud = document.getElementById("music");
+aud.loop=true;
+var but = document.getElementById("LoopChange");
+but.innerHTML="循环播放";
+but.setAttribute("onclick","noLoop()");
+}
+
+
+
+
+</script>
+
+</html>
